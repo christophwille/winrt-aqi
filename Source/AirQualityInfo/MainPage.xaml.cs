@@ -7,6 +7,7 @@ using AirQualityInfo.Common;
 using AirQualityInfo.Models;
 using AirQualityInfo.Proxies;
 using AirQualityInfo.ViewModels;
+using Callisto.Controls;
 using GalaSoft.MvvmLight;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
@@ -64,6 +65,73 @@ namespace AirQualityInfo
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private void FilterBy_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            var menu = new Menu();
+            var states = FilterByState.GetStates();
+
+            foreach (var state in states)
+            {
+                var mnuItem = new MenuItem
+                                  {
+                                      Text = state.StateDisplayString,
+                                      Tag = state
+                                  };
+                
+                mnuItem.Tapped += filterByClicked;
+                menu.Items.Add(mnuItem);
+            }
+
+            DisplayFlyout(menu, filterByControl);
+        }
+
+        private void SortBy_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            var menu = new Menu();
+            var sortings = SortByOption.GetSortings();
+
+            foreach (var sortby in sortings)
+            {
+                var mnuItem = new MenuItem
+                {
+                    Text = sortby.SortDisplayString,
+                    Tag = sortby
+                };
+
+                mnuItem.Tapped += sortByClicked;
+                menu.Items.Add(mnuItem);
+            }
+
+            DisplayFlyout(menu, sortByControl);
+        }
+
+        private void DisplayFlyout(Menu menu, FrameworkElement placementTarget)
+        {
+            var flyout = new Flyout();
+            flyout.Placement = PlacementMode.Bottom;
+            flyout.HorizontalAlignment = HorizontalAlignment.Left;
+            flyout.HorizontalContentAlignment = HorizontalAlignment.Left;
+            flyout.PlacementTarget = placementTarget;
+            flyout.Content = menu;
+            flyout.IsOpen = true;
+        }
+
+        private void filterByClicked(object sender, RoutedEventArgs e)
+        {
+            var state = ((MenuItem)sender).Tag as FilterByState;
+
+            ViewModel.CurrentFilter = state;
+            ViewModel.DisplayMeasurements();
+        }
+
+        private void sortByClicked(object sender, RoutedEventArgs e)
+        {
+            var sortby = ((MenuItem)sender).Tag as SortByOption;
+
+            ViewModel.CurrentSort = sortby;
+            ViewModel.DisplayMeasurements();
         }
     }
 }

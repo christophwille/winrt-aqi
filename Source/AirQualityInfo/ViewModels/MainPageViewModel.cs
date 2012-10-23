@@ -75,12 +75,26 @@ namespace AirQualityInfo.ViewModels
         public const string OzoneDataPropertyName = "OzoneData";
         private List<OzoneInformation> _ozoneData = null;
 
-        public List<OzoneInformation> OzoneData
+        private List<OzoneInformation> OzoneData
         {
             get { return _ozoneData; }
             set
             {
                 Set(OzoneDataPropertyName, ref _ozoneData, value);
+                OzoneDisplayData = null;
+            }
+        }
+
+        // Bindable data
+        public const string OzoneDisplayDataPropertyName = "OzoneDisplayData";
+        private List<OzoneInformation> _ozoneDisplayData = null;
+
+        public List<OzoneInformation> OzoneDisplayData
+        {
+            get { return _ozoneDisplayData; }
+            set
+            {
+                Set(OzoneDisplayDataPropertyName, ref _ozoneDisplayData, value);
             }
         }
 
@@ -96,6 +110,36 @@ namespace AirQualityInfo.ViewModels
             set
             {
                 Set(UpdateInProgressPropertyName, ref _updateInProgress, value);
+            }
+        }
+
+        public const string CurrentFilterPropertyName = "CurrentFilter";
+        private FilterByState _currentFilter = FilterByState.GetDefaultFilter();
+
+        public FilterByState CurrentFilter
+        {
+            get
+            {
+                return _currentFilter;
+            }
+            set
+            {
+                Set(CurrentFilterPropertyName, ref _currentFilter, value);
+            }
+        }
+
+        public const string CurrentSortPropertyName = "CurrentSort";
+        private SortByOption _currentSort = SortByOption.GetDefaultSort();
+
+        public SortByOption CurrentSort
+        {
+            get
+            {
+                return _currentSort;
+            }
+            set
+            {
+                Set(CurrentSortPropertyName, ref _currentSort, value);
             }
         }
 
@@ -150,6 +194,8 @@ namespace AirQualityInfo.ViewModels
 
                 double distance = currentPos.DistanceTo(dataPoint.Location);
 
+                dataPoint.DistanceToCurrentPosition = distance;
+
                 if (distance < nearestDistance)
                 {
                     nearestDistance = distance;
@@ -167,6 +213,44 @@ namespace AirQualityInfo.ViewModels
                 NearestMeasurement = null;
                 DistanceToNearest = double.NaN;
             }
+
+            ResetDisplayMeasurements();
+        }
+
+        public void ResetDisplayMeasurements()
+        {
+            CurrentFilter = FilterByState.GetDefaultFilter();
+            CurrentSort = SortByOption.GetDefaultSort();
+
+            DisplayMeasurements();
+        }
+
+        public void DisplayMeasurements()
+        {
+            if (null == OzoneData) return;
+
+            var defaultFilter = FilterByState.GetDefaultFilter();
+            string stateFilter = CurrentFilter.Id;
+
+            var query = OzoneData.ToList().AsQueryable();
+
+            if (stateFilter != defaultFilter.Id)
+                query = query.Where(oi => 0 == String.Compare(stateFilter, oi.State, StringComparison.OrdinalIgnoreCase));
+
+            if (CurrentSort.SortBy == SortByOptionEnum.Alpha)
+            {
+                query = query.OrderBy(oi => oi.Name);
+            }
+            else if (CurrentSort.SortBy == SortByOptionEnum.Distance)
+            {
+                query = query.OrderBy(oi => oi.DistanceToCurrentPosition);
+            }
+            else if (CurrentSort.SortBy == SortByOptionEnum.OneHourAverage)
+            {
+                query = query.OrderBy(oi => oi.OneHourAverage);
+            }
+
+            OzoneDisplayData = query.ToList();
         }
 
         private async Task<T> PerformOperationAsync<T>(Func<Task<T>> operationAsync)

@@ -126,9 +126,11 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MetroGridHelper.cs" />
+    <Compile Include="Models\FilterByState.cs" />
     <Compile Include="Models\GeoCoordinate.cs" />
     <Compile Include="Models\OzoneInformation.cs" />
     <Compile Include="Models\SampleDataSource.cs" />
+    <Compile Include="Models\SortByOption.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proxies\OzoneRootObject.cs" />
     <Compile Include="Proxies\UmweltbundesamtOzoneData.cs" />

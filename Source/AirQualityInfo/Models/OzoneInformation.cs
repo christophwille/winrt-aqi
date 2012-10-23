@@ -28,6 +28,8 @@ namespace AirQualityInfo.Models
             return true;
         }
 
+        public double? DistanceToCurrentPosition { get; set; }
+
         public string DisplayOneHourAverage
         {
             get { return String.Format("Ein-Stunden Durchschnitt: {0} µg/m3", OneHourMax); }

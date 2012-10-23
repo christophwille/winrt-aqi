@@ -16,7 +16,7 @@
 
         <CollectionViewSource
             x:Name="measurementsViewSource"
-            Source="{Binding OzoneData}"
+            Source="{Binding OzoneDisplayData}"
             d:Source="{Binding OzoneData, Source={d:DesignInstance Type=data:SampleDataSource, IsDesignTimeCreatable=True}}"/>
 
         <LinearGradientBrush x:Key="OzoneLegendBrush" StartPoint="0.05,0" EndPoint="0.95,0">
@@ -102,8 +102,18 @@
 
             <TextBlock VerticalAlignment="Top" x:Name="ozoneInfoHeader" Grid.Row="0" Grid.Column="1" 
                        Margin="0,15,15,15" Text="Aktuelle Werte" Style="{StaticResource PageSubheaderTextStyle}"/>
-            <TextBlock VerticalAlignment="Top" x:Name="measurementsHeader" Grid.Row="0" Grid.Column="3" 
-                       Margin="0,15,15,15" Text="Alle Stationen" Style="{StaticResource PageSubheaderTextStyle}"/>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" x:Name="measurementsHeader" Grid.Row="0" Grid.Column="3" >
+                <TextBlock Margin="0,15,15,15" Text="{Binding CurrentFilter.ForHeaderMenu}" 
+                           Tapped="FilterBy_OnTapped"
+                           x:Name="filterByControl"
+                           Style="{StaticResource PageSubheaderTextStyle}"/>
+                <TextBlock Margin="0,15,15,15" Text="{Binding CurrentSort.ForHeaderMenu}" 
+                           Tapped="SortBy_OnTapped"
+                           x:Name="sortByControl"
+                           Style="{StaticResource PageSubheaderTextStyle}"/>
+            </StackPanel>
+            
 
 
             <Grid x:Name="infoGrid" HorizontalAlignment="Left" Width="300" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top">
@@ -203,7 +213,7 @@
             <GridView
                 VerticalAlignment="Top"
                 x:Name="measurementsGridView"
-                Visibility="{Binding OzoneData, Converter={StaticResource q42visconverter}}"
+                Visibility="{Binding OzoneDisplayData, Converter={StaticResource q42visconverter}}"
                 AutomationProperties.AutomationId="ItemsGridView"
                 AutomationProperties.Name="Items"
                 TabIndex="1"
@@ -220,7 +230,7 @@
                         Grid.Column="3"
                         Grid.Row="1"
                         x:Name="InfoMessagesPane"
-                        Visibility="{Binding OzoneData, Converter={StaticResource q42inversevisconverter}}">
+                        Visibility="{Binding OzoneDisplayData, Converter={StaticResource q42inversevisconverter}}">
 
                 <TextBlock Style="{StaticResource TitleTextStyle}" 
                            VerticalAlignment="Center">Keine Daten geladen</TextBlock>

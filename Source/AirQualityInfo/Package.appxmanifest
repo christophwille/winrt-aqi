@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="ChristophWille.Ozonwertesterreich" Publisher="CN=C7672E4A-2AFC-41B8-87FD-CBC3978C49C6" Version="1.0.0.1" />
+  <Identity Name="ChristophWille.Ozonwertesterreich" Publisher="CN=C7672E4A-2AFC-41B8-87FD-CBC3978C49C6" Version="1.0.0.2" />
   <Properties>
     <DisplayName>Ozonwerte Österreich</DisplayName>
     <PublisherDisplayName>Christoph Wille</PublisherDisplayName>
