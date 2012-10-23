@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="ChristophWille.Ozonwertesterreich" Publisher="CN=C7672E4A-2AFC-41B8-87FD-CBC3978C49C6" Version="1.0.0.1" />
+  <Properties>
+    <DisplayName>Ozonwerte Österreich</DisplayName>
+    <PublisherDisplayName>Christoph Wille</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="AirQualityInfo.App">
+      <VisualElements DisplayName="Ozonwerte Österreich" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Zeigt für Österreich die letztaktuellen Ozonwerte der ihrer Position am nächsten gelegenen Meßstation an. Datenquelle: Umweltbundesamt GmbH - data.umweltbundesamt.at" ForegroundText="light" BackgroundColor="#464646">
+        <DefaultTile ShowName="allLogos" />
+        <SplashScreen Image="Assets\SplashScreen.png" />
+      </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <DeviceCapability Name="location" />
+  </Capabilities>
+</Package>
