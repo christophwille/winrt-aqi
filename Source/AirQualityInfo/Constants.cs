@@ -10,7 +10,5 @@ namespace AirQualityInfo
     {
         public const string SupportUrl = "https://github.com/christophwille/winrt-aqi/";
         public const string PrivacyPolicyUrl = "https://github.com/christophwille/winrt-aqi/wiki/Datenschutzerkl%C3%A4rung-%28Privacy-Statement%29";
-
-        public const string HeaderMenuDropDownCharacter = " ▼";
     }
 }

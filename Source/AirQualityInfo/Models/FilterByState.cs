@@ -17,11 +17,6 @@ namespace AirQualityInfo.Models
         public string Id { get; set; }
         public string StateDisplayString { get; set; }
 
-        public string ForHeaderMenu
-        {
-            get { return StateDisplayString + Constants.HeaderMenuDropDownCharacter; }
-        }
-
         public static FilterByState GetDefaultFilter()
         {
             return new FilterByState("", "Alle Bundesländer");

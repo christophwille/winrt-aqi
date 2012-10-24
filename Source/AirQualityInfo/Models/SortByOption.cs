@@ -24,11 +24,6 @@ namespace AirQualityInfo.Models
         public SortByOptionEnum SortBy { get; set; }
         public string SortDisplayString { get; set; }
 
-        public string ForHeaderMenu
-        {
-            get { return SortDisplayString + Constants.HeaderMenuDropDownCharacter; }
-        }
-
         public static SortByOption GetDefaultSort()
         {
             return new SortByOption(SortByOptionEnum.Alpha, "Alphabetisch");

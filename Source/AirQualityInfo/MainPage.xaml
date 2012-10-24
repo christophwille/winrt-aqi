@@ -104,14 +104,20 @@
                        Margin="0,15,15,15" Text="Aktuelle Werte" Style="{StaticResource PageSubheaderTextStyle}"/>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" x:Name="measurementsHeader" Grid.Row="0" Grid.Column="3" >
-                <TextBlock Margin="0,15,15,15" Text="{Binding CurrentFilter.ForHeaderMenu}" 
+                <TextBlock Margin="0,15,15,15"
                            Tapped="FilterBy_OnTapped"
                            x:Name="filterByControl"
-                           Style="{StaticResource PageSubheaderTextStyle}"/>
-                <TextBlock Margin="0,15,15,15" Text="{Binding CurrentSort.ForHeaderMenu}" 
+                           Style="{StaticResource PageSubheaderTextStyle}">
+                    <Run Text="{Binding CurrentFilter.StateDisplayString}" />
+                    <Run FontFamily="Symbol" Text=" &#xDA;" />
+                </TextBlock>
+                <TextBlock Margin="0,15,15,15"
                            Tapped="SortBy_OnTapped"
                            x:Name="sortByControl"
-                           Style="{StaticResource PageSubheaderTextStyle}"/>
+                           Style="{StaticResource PageSubheaderTextStyle}">
+                    <Run Text="{Binding CurrentSort.SortDisplayString}" />
+                    <Run FontFamily="Symbol" Text=" &#xDA;" />
+                </TextBlock>
             </StackPanel>
             
 
