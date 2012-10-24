@@ -1,4 +1,4 @@
-Ozonwerte �sterreich
+Ozonwerte Österreich
 ======================
 
 This WinRT App downloads ozone measurements from the servers of the Austrian Umweltbundesamt,
