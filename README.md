@@ -1,8 +1,8 @@
-Ozonwerte Österreich
+Ozonwerte Ã–sterreich
 ======================
 
-This WinRT App downloads ozone measurements from the servers auf the Austrian Umweltbundesamt,
-searches for the nearest one to your current position, and displays this data color-coded based on exposure level.
+This WinRT App downloads ozone measurements from the servers of the Austrian Umweltbundesamt,
+searches for the nearest station to your current position, and displays this data color-coded based on exposure level.
 
 Screenshot
 
