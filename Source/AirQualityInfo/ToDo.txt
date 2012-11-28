@@ -1,0 +1,5 @@
+﻿
+Load / Save state: selected item
+
+Fix: When position cannot be loaded
+

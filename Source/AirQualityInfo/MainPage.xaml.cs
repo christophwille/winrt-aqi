@@ -20,13 +20,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
-
 namespace AirQualityInfo
 {
-    /// <summary>
-    /// A basic page that provides characteristics common to most applications.
-    /// </summary>
     public sealed partial class MainPage : AirQualityInfo.Common.LayoutAwarePage
     {
         public MainPageViewModel ViewModel { get; set; }
@@ -132,6 +127,12 @@ namespace AirQualityInfo
 
             ViewModel.CurrentSort = sortby;
             ViewModel.DisplayMeasurements();
+        }
+
+        private void MeasurementsGridView_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            var item = e.ClickedItem as OzoneInformation;
+            ViewModel.SelectedMeasurement = item;
         }
     }
 }

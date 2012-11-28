@@ -30,45 +30,19 @@ namespace AirQualityInfo.ViewModels
             }
         }
 
-        public const string NearestMeasurementPropertyName = "NearestMeasurement";
-        private OzoneInformation _nearestMeasurement = null;
+        public const string SelectedMeasurementPropertyName = "SelectedMeasurement";
+        private OzoneInformation _selectedMeasurement = null;
 
-        public OzoneInformation NearestMeasurement
+        public OzoneInformation SelectedMeasurement
         {
             get
             {
-                return _nearestMeasurement;
+                return _selectedMeasurement;
             }
             set
             {
-                Set(NearestMeasurementPropertyName, ref _nearestMeasurement, value);
+                Set(SelectedMeasurementPropertyName, ref _selectedMeasurement, value);
                 _showMapCommand.RaiseCanExecuteChanged();
-            }
-        }
-
-        public const string DistanceToNearestPropertyName = "DistanceToNearest";
-        private double _distanceToNearest = double.NaN;
-
-        public double DistanceToNearest
-        {
-            get
-            {
-                return _distanceToNearest;
-            }
-            set
-            {
-                Set(DistanceToNearestPropertyName, ref _distanceToNearest, value);
-                RaisePropertyChanged(DisplayDistanceToNearestPropertyName);
-            }
-        }
-
-        public const string DisplayDistanceToNearestPropertyName = "DisplayDistanceToNearest";
-        public string DisplayDistanceToNearest
-        {
-            get
-            {
-                if (double.IsNaN(DistanceToNearest)) return "";
-                return String.Format("Distanz: {0:F4} km", DistanceToNearest);
             }
         }
 
@@ -203,17 +177,8 @@ namespace AirQualityInfo.ViewModels
                 }
             }
 
-            if (null != nearestMeasurement)
-            {
-                NearestMeasurement = nearestMeasurement;
-                DistanceToNearest = nearestDistance;
-            }
-            else
-            {
-                NearestMeasurement = null;
-                DistanceToNearest = double.NaN;
-            }
-
+            // The default measurement is the nearest measurement
+            SelectedMeasurement = nearestMeasurement ?? null;
             ResetDisplayMeasurements();
         }
 
@@ -294,7 +259,7 @@ namespace AirQualityInfo.ViewModels
 
         public bool CanShowMap
         {
-            get { return (NearestMeasurement != null); }
+            get { return (SelectedMeasurement != null); }
         }
 
         public void ShowMap()
@@ -303,8 +268,8 @@ namespace AirQualityInfo.ViewModels
             var options = new MapOptions()
                               {
                                   CenterPoint =
-                                      new MapPosition(NearestMeasurement.Location.Latitude,
-                                                      NearestMeasurement.Location.Longitude)
+                                      new MapPosition(SelectedMeasurement.Location.Latitude,
+                                                      SelectedMeasurement.Location.Longitude)
                               };
 
             MapsHelper.ShowMapWithOptionsAsync(options);

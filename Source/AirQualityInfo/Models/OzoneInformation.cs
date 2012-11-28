@@ -30,6 +30,15 @@ namespace AirQualityInfo.Models
 
         public double? DistanceToCurrentPosition { get; set; }
 
+        public string DisplayDistanceToCurrentPosition
+        {
+            get
+            {
+                if (!DistanceToCurrentPosition.HasValue) return "";
+                return String.Format("Distanz: {0:F4} km", DistanceToCurrentPosition.Value);
+            }
+        }
+
         public string DisplayOneHourAverage
         {
             get { return String.Format("Ein-Stunden Durchschnitt: {0} µg/m3", OneHourMax); }

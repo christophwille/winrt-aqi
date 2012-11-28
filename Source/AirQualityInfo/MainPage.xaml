@@ -131,26 +131,26 @@
 
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Grid.Row="0">
                     <StackPanel Orientation="Vertical">
-                        <StackPanel VerticalAlignment="Top" Margin="0,0,0,0" Background="{Binding NearestMeasurement.OneHourAverage, Converter={StaticResource colorInterpolator}}">
-                            <TextBlock Text="{Binding NearestMeasurement.Name}" 
+                        <StackPanel VerticalAlignment="Top" Margin="0,0,0,0" Background="{Binding SelectedMeasurement.OneHourAverage, Converter={StaticResource colorInterpolator}}">
+                            <TextBlock Text="{Binding SelectedMeasurement.Name}" 
                                    Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
                                    Margin="15,15,15,0"
                                    Style="{StaticResource TitleTextStyle}" />
-                            <TextBlock Text="{Binding DisplayDistanceToNearest}" 
+                            <TextBlock Text="{Binding SelectedMeasurement.DisplayDistanceToCurrentPosition}" 
                                    Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
                                    Margin="15,0,15,15"
                                    Style="{StaticResource SubtitleTextStyle}" />
                         </StackPanel>
                         <StackPanel VerticalAlignment="Top" Margin="15,15,15,15">
-                            <TextBlock Text="{Binding NearestMeasurement.DisplayOneHourAverage}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                            <TextBlock Text="{Binding SelectedMeasurement.DisplayOneHourAverage}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
                                    Style="{StaticResource SubtitleTextStyle}" />
-                            <TextBlock Text="{Binding NearestMeasurement.DisplayOneHourMax}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                            <TextBlock Text="{Binding SelectedMeasurement.DisplayOneHourMax}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
                                    Style="{StaticResource SubtitleTextStyle}" />
-                            <TextBlock Text="{Binding NearestMeasurement.DisplayEightHoursAverage}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                            <TextBlock Text="{Binding SelectedMeasurement.DisplayEightHoursAverage}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
                                    Style="{StaticResource SubtitleTextStyle}" />
-                            <TextBlock Text="{Binding NearestMeasurement.DisplayOneHourAverageTime}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                            <TextBlock Text="{Binding SelectedMeasurement.DisplayOneHourAverageTime}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
                                    Style="{StaticResource SubtitleTextStyle}" />
-                            <TextBlock Text="{Binding NearestMeasurement.DisplayInfoFreshness}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                            <TextBlock Text="{Binding SelectedMeasurement.DisplayInfoFreshness}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
                                    Style="{StaticResource SubtitleTextStyle}" />
 
                             <Button Style="{StaticResource MapPinAppBarButtonStyle}" 
@@ -228,6 +228,8 @@
                 Padding="0,0,0,0"
                 ItemsSource="{Binding Source={StaticResource measurementsViewSource}}"
                 ItemTemplate="{StaticResource MeasurementsGridViewItemTemplate}"
+                IsItemClickEnabled="True"
+                ItemClick="MeasurementsGridView_OnItemClick"
                 SelectionMode="None"
                 IsSwipeEnabled="false"/>
 
