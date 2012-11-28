@@ -152,8 +152,16 @@ namespace AirQualityInfo.ViewModels
             // If any async operations are still in progress, return immediately
             if (0 != _outstandingAsyncOperations) return;
 
-            // If either position or ozone measurements could not be obtained return immediately
-            if (null == CurrentLocation || null == OzoneData) return;
+            // If there is no ozone data, we cannot do any calculations
+            if (null == OzoneData) return;
+
+            // If there is no location, we at least have the ozone data itself without distance information
+            if (null == CurrentLocation)
+            {
+                SelectedMeasurement = null;
+                ResetDisplayMeasurements();
+                return;
+            }
 
             // Work with copies of the data (if while processing another async operation is triggered)
             GeoCoordinate currentPos = CurrentLocation;
