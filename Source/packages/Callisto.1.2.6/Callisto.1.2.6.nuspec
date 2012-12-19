@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Callisto</id>
-    <version>1.2.5</version>
+    <version>1.2.6</version>
     <title>Callisto</title>
     <authors>Tim Heuer</authors>
     <owners>Tim Heuer</owners>
@@ -12,6 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A control suite for some common things a Windows 8 XAML application might want to include such as a Flyout, Menu, Rating, Settings Pane, and Pivot control.</description>
     <releaseNotes>* Complete details - https://github.com/timheuer/callisto/blob/master/changelog.md
+        * 1.2.6 - Added BackButtonCommand to CustomDialog
         * 1.2.5 - Bug fixes, added CustomDialog control
         * 1.2.4 - Added NumericUpDown control, ColorContrastConverter, SettingsManagement API
         * 1.2.3 - Fixing internationalization issue in Color converter.
@@ -20,5 +21,8 @@
         * NEW: AppManifestHelper to parse out VisualElements more easily.</releaseNotes>
     <language>en-US</language>
     <tags>xaml winrt flyout settings popup menu win8 metro pivot ratings flipview watermark</tags>
+    <references>
+      <reference file="Callisto.dll" />
+    </references>
   </metadata>
 </package>

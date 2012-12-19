@@ -176,9 +176,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Callisto, Version=1.2.5.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Callisto, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Callisto.1.2.5\lib\winrt45\Callisto.dll</HintPath>
+      <HintPath>..\packages\Callisto.1.2.6\lib\winrt45\Callisto.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras.Win8">
       <HintPath>..\packages\MvvmLightLibs.4.1.23.0\lib\winrt45\GalaSoft.MvvmLight.Extras.Win8.dll</HintPath>
@@ -188,14 +188,15 @@
     </Reference>
     <Reference Include="MetroLog, Version=0.6.2.0, Culture=neutral, PublicKeyToken=ba4ace74c3b410f3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MetroLog.0.7.7\lib\netcore45\MetroLog.dll</HintPath>
+      <HintPath>..\packages\MetroLog.0.8.1\lib\netcore45\MetroLog.dll</HintPath>
     </Reference>
     <Reference Include="MetroLog.NetCore, Version=0.6.2.0, Culture=neutral, PublicKeyToken=ba4ace74c3b410f3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MetroLog.0.7.7\lib\netcore45\MetroLog.NetCore.dll</HintPath>
+      <HintPath>..\packages\MetroLog.0.8.1\lib\netcore45\MetroLog.NetCore.dll</HintPath>
     </Reference>
-    <Reference Include="MetroLog.WinRT">
-      <HintPath>..\packages\MetroLog.0.7.7\lib\netcore45\MetroLog.WinRT.winmd</HintPath>
+    <Reference Include="MetroLog.WinRT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MetroLog.0.8.1\lib\netcore45\MetroLog.WinRT.winmd</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\MvvmLightLibs.4.1.23.0\lib\winrt45\Microsoft.Practices.ServiceLocation.dll</HintPath>
