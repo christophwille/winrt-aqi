@@ -1,0 +1,1 @@
+﻿This is a PCL targetting .NET 4.5, Windows Store 8+ and Windows Phone 8

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using AirQualityInfo.DataClient.Models;
 using AirQualityInfo.Models;
 using AirQualityInfo.Services;
 using GalaSoft.MvvmLight;

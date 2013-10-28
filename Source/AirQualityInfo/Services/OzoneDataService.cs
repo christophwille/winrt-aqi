@@ -4,8 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AirQualityInfo.DataClient;
+using AirQualityInfo.DataClient.Models;
 using AirQualityInfo.Models;
-using AirQualityInfo.Proxies;
 
 namespace AirQualityInfo.Services
 {
@@ -46,8 +47,8 @@ namespace AirQualityInfo.Services
             {
                 LoadingOzoneData = true;
 
-                var proxy = new UmweltbundesamtOzoneData();
-                var data = await proxy.Download();
+                var proxy = new UmweltbundesamtOzoneDataClient();
+                var data = await proxy.RetrieveAsync();
 
                 result = data;
             }

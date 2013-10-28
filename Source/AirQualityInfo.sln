@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirQualityInfo", "AirQualityInfo\AirQualityInfo.csproj", "{DBB7201B-AB31-410A-B6F7-F81928EF49AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirQualityInfo.DataClient", "AirQualityInfo.DataClient\AirQualityInfo.DataClient.csproj", "{633E8881-87B8-4BE7-A39A-D7FAA525A81D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,16 @@ Global
 		{DBB7201B-AB31-410A-B6F7-F81928EF49AE}.Release|x86.ActiveCfg = Release|x86
 		{DBB7201B-AB31-410A-B6F7-F81928EF49AE}.Release|x86.Build.0 = Release|x86
 		{DBB7201B-AB31-410A-B6F7-F81928EF49AE}.Release|x86.Deploy.0 = Release|x86
+		{633E8881-87B8-4BE7-A39A-D7FAA525A81D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{633E8881-87B8-4BE7-A39A-D7FAA525A81D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{633E8881-87B8-4BE7-A39A-D7FAA525A81D}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{633E8881-87B8-4BE7-A39A-D7FAA525A81D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{633E8881-87B8-4BE7-A39A-D7FAA525A81D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{633E8881-87B8-4BE7-A39A-D7FAA525A81D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{633E8881-87B8-4BE7-A39A-D7FAA525A81D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{633E8881-87B8-4BE7-A39A-D7FAA525A81D}.Release|ARM.ActiveCfg = Release|Any CPU
+		{633E8881-87B8-4BE7-A39A-D7FAA525A81D}.Release|x64.ActiveCfg = Release|Any CPU
+		{633E8881-87B8-4BE7-A39A-D7FAA525A81D}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
