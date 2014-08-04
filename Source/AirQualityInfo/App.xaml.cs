@@ -102,7 +102,7 @@ namespace AirQualityInfo
                 "Über",
                 (handler) =>
                 {
-                    var settings = new SettingsFlyout();
+                    var settings = new Callisto.Controls.SettingsFlyout();
                     settings.Content = new AboutControl();
 
                     var c = new Color()

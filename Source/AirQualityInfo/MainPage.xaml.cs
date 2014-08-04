@@ -104,7 +104,7 @@ namespace AirQualityInfo
 
         private void DisplayFlyout(Menu menu, FrameworkElement placementTarget)
         {
-            var flyout = new Flyout();
+            var flyout = new Callisto.Controls.Flyout();
             flyout.Placement = PlacementMode.Bottom;
             flyout.HorizontalAlignment = HorizontalAlignment.Left;
             flyout.HorizontalContentAlignment = HorizontalAlignment.Left;
