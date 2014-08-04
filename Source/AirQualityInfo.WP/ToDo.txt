@@ -1,0 +1,28 @@
+﻿
+
+* MainView
+
+messstellen (header)
+Alle, alphabetisch aA (Vorarlberg, distanz Aa) (TextBlock)
+ListView (ItemTemplate diff von W8 App, Farbe als vertikales Rechteck links neben den Texten, bessere Lesbarkeit)
+
+(Default Distanz aufsteigend von aktueller Position)
+AppBar mit zwei Buttons Filter und Sort die MenuFlyouts haben, sowie About als Secondary Command
+
+* MessstelleView
+
+Details und Legende
+
+* AboutView
+
+infos
+
+** Ideas for future versions
+
+Display on map (like W8)
+Favorites (? how useful is this when geo-located nearest is the default ?)
+
+
+** Non-Goals
+
+Secondary tile or push notifications (would need a backend for this to work)
