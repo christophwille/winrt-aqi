@@ -3,6 +3,22 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AirQualityInfo.WP"
-    xmlns:micro="using:Caliburn.Micro">
+    xmlns:micro="using:Caliburn.Micro"
+    xmlns:common="using:AirQualityInfo.Common">
+
+    <micro:CaliburnApplication.Resources>
+        <LinearGradientBrush x:Key="OzoneLegendBrush" StartPoint="0.05,0" EndPoint="0.95,0">
+            <GradientStop Offset="0" Color="Green"/>
+            <GradientStop Offset="0.3" Color="Yellow"/>
+            <GradientStop Offset="0.7" Color="Red"/>
+            <GradientStop Offset="0.9" Color="Black"/>
+        </LinearGradientBrush>
+
+        <common:LinearGradientBrushInterpolatorConverter 
+            x:Name="ColorInterpolator" 
+            TemplateBrush="{StaticResource OzoneLegendBrush}"
+            DataMinimum="0"
+            DataMaximum="300" />
+    </micro:CaliburnApplication.Resources>
 
 </micro:CaliburnApplication>

@@ -14,25 +14,28 @@ namespace AirQualityInfo.DataClient
 {
     public class UmweltbundesamtOzoneDataClient
     {
+        private readonly IHttpClient _httpClient;
+
         private const string JsonpResponseStart = "jsonpResponse(";
         private const string JsonpResponseEnd = ")";
 
+        public UmweltbundesamtOzoneDataClient(IHttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
+
+
         public async Task<List<OzoneInformation>> RetrieveAsync()
         {
-            var handler = new HttpClientHandler();
-            if (handler.SupportsAutomaticDecompression)
-            {
-                handler.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-            }
-
-            var client = new HttpClient(handler);
             List<OzoneRootObject> result = null;
 
             try
             {
-                var response = await client.GetAsync("http://luft.umweltbundesamt.at/pub/ozonbericht/aktuell.json");
-                string json = await response.Content.ReadAsStringAsync();
-                client.Dispose();
+                string json = await _httpClient
+                    .GetStringAsync("http://luft.umweltbundesamt.at/pub/ozonbericht/aktuell.json")
+                    .ConfigureAwait(false);
+
+                if (null == json) return null;
 
                 json = json.Trim();
                 if (!String.IsNullOrWhiteSpace(json) && json.StartsWith(JsonpResponseStart) && json.EndsWith(JsonpResponseEnd))
@@ -50,21 +53,21 @@ namespace AirQualityInfo.DataClient
             }
 
             return result.Select(r => new OzoneInformation()
-            {
-                Id = r.id,
-                Name = r.name,
-                Location = new GeoCoordinate(r.lat, r.lon),
-                OneHourAverage = r.ozon1h,
-                OneHourAverageTimestampLocal = ToLocalTime(r.ozon1hTimestamp_utc),
-                OneHourMax = r.ozon1hMax,
-                OneHourMaxTimestampLocal = ToLocalTime(r.ozon1hMaxTimestamp_utc),
-                EightHoursAverage = r.ozon8h,
-                Height = r.height,
-                State = r.state,
-                TimestampLocal = ToLocalTime(r.timestamp_utc)
-            })
-                                          .OrderBy(r => r.Name)
-                                          .ToList();
+                {
+                    Id = r.id,
+                    Name = r.name,
+                    Location = new GeoCoordinate(r.lat, r.lon),
+                    OneHourAverage = r.ozon1h,
+                    OneHourAverageTimestampLocal = ToLocalTime(r.ozon1hTimestamp_utc),
+                    OneHourMax = r.ozon1hMax,
+                    OneHourMaxTimestampLocal = ToLocalTime(r.ozon1hMaxTimestamp_utc),
+                    EightHoursAverage = r.ozon8h,
+                    Height = r.height,
+                    State = r.state,
+                    TimestampLocal = ToLocalTime(r.timestamp_utc)
+                })
+                .OrderBy(r => r.Name)
+                .ToList();
         }
 
         private DateTime? ToLocalTime(string jsonDatetime)

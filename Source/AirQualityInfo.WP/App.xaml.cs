@@ -15,7 +15,10 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using AirQualityInfo.DataClient;
+using AirQualityInfo.DataClient.Mocks;
 using AirQualityInfo.WP.Common;
+using AirQualityInfo.WP.Services;
 using AirQualityInfo.WP.ViewModels;
 using AirQualityInfo.WP.Views;
 using Caliburn.Micro;
@@ -41,6 +44,9 @@ namespace AirQualityInfo.WP
 
             //container.RegisterInstance(typeof(IFavoritesRepository), null, new DefaultFavoritesRepository());
             //container.RegisterPerRequest(typeof(IMessageService), null, typeof(DefaultMessageService));
+
+            container.RegisterPerRequest(typeof(IHttpClient), null, typeof(MockHttpClient));
+            container.RegisterPerRequest(typeof(IOzoneDataService), null, typeof(OzoneDataService));
 
             container
                 .PerRequest<MainViewModel>()

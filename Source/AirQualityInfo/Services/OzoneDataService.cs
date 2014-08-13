@@ -47,7 +47,7 @@ namespace AirQualityInfo.Services
             {
                 LoadingOzoneData = true;
 
-                var proxy = new UmweltbundesamtOzoneDataClient();
+                var proxy = new UmweltbundesamtOzoneDataClient(new DefaultHttpClient());
                 var data = await proxy.RetrieveAsync();
 
                 result = data;

@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DefaultHttpClient.cs" />
+    <Compile Include="IHttpClient.cs" />
+    <Compile Include="Mocks\MockHttpClient.cs" />
     <Compile Include="Models\GeoCoordinate.cs" />
     <Compile Include="Models\GeoCoordinate.DistanceTo.cs" />
     <Compile Include="Models\OzoneInformation.cs" />
@@ -53,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <EmbeddedResource Include="Mocks\sampledata.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />

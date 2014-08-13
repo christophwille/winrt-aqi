@@ -1,0 +1,128 @@
+﻿<Page
+    x:Class="AirQualityInfo.WP.Views.StationDetailsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AirQualityInfo.WP.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:designViewModels="using:AirQualityInfo.WP.DesignViewModels"
+    mc:Ignorable="d"
+    d:DataContext="{Binding Source={d:DesignInstance Type=designViewModels:StationDetailsViewModelDT, IsDesignTimeCreatable=True}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock Text="AKTUELLE WERTE" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+            <TextBlock Text="{Binding Station.Name}" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <Grid x:Name="infoGrid" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Grid.Row="0">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel VerticalAlignment="Top" Margin="0,0,0,0" Background="{Binding Station.OneHourAverage, Converter={StaticResource ColorInterpolator}}">
+                            <TextBlock Text="{Binding Station.Name}" 
+                                   Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                                   Margin="15,15,15,0"
+                                   Style="{StaticResource BaseTextBlockStyle}" />
+                            <TextBlock Text="{Binding Station.DisplayDistanceToCurrentPosition}" 
+                                   Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                                   Margin="15,0,15,15"
+                                   Style="{StaticResource BaseTextBlockStyle}" />
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Top" Margin="15,15,15,15">
+                            <TextBlock Text="{Binding Station.DisplayOneHourAverage}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                                   Style="{StaticResource BaseTextBlockStyle}" />
+                            <TextBlock Text="{Binding Station.DisplayOneHourMax}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                                   Style="{StaticResource BaseTextBlockStyle}" />
+                            <TextBlock Text="{Binding Station.DisplayEightHoursAverage}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                                   Style="{StaticResource BaseTextBlockStyle}" />
+                            <TextBlock Text="{Binding Station.DisplayOneHourAverageTime}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                                   Style="{StaticResource BaseTextBlockStyle}" />
+                            <TextBlock Text="{Binding Station.DisplayInfoFreshness}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                                   Style="{StaticResource BaseTextBlockStyle}" />
+
+                            <!--<Button Style="{StaticResource MapPinAppBarButtonStyle}" 
+                                    AutomationProperties.Name="Karte" 
+                                    Margin="0,15,0,0"
+                                    Command="{Binding ShowMapCommand, Mode=OneWay}" />-->
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Grid Grid.Row="1" Width="300" x:Name="legendGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <Rectangle Height="10" Width="350"  Fill="{StaticResource OzoneLegendBrush}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10"/>
+
+                    <TextBlock Grid.Column="0" Grid.Row="1"
+                        Text="0"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource BaseTextBlockStyle}" />
+
+                    <TextBlock Grid.Column="3" Grid.Row="1"
+                        Text="120"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource BaseTextBlockStyle}" />
+
+                    <TextBlock Grid.Column="5" Grid.Row="1"
+                        Text="180"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource BaseTextBlockStyle}" />
+
+                    <TextBlock Grid.Column="8" Grid.Row="1"
+                        Text="270"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource BaseTextBlockStyle}" />
+                </Grid>
+
+
+                <StackPanel VerticalAlignment="Top" Margin="15,15,15,15" Grid.Row="2">
+                    <TextBlock 
+                        Text="Informationsschwelle ab 180 µg/m3 Ein-Stunden Durchschnitt"
+                        Style="{StaticResource BaseTextBlockStyle}" />
+
+                    <TextBlock 
+                        Text="Alarmschwelle ab 240 µg/m3 Ein-Stunden Durchschnitt"
+                        Style="{StaticResource BaseTextBlockStyle}" />
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Page>
