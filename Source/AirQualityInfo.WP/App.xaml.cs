@@ -47,6 +47,7 @@ namespace AirQualityInfo.WP
 
             container.RegisterPerRequest(typeof(IHttpClient), null, typeof(MockHttpClient));
             container.RegisterPerRequest(typeof(IOzoneDataService), null, typeof(OzoneDataService));
+            container.RegisterPerRequest(typeof(ILocationService), null, typeof(LocationService));
 
             container
                 .PerRequest<MainViewModel>()
