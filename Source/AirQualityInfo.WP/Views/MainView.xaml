@@ -13,21 +13,20 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.Resources>
-
         <DataTemplate x:Key="ResultItemDataTemplate">
             <Grid HorizontalAlignment="Left" Width="350" Height="200">
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
                     <StackPanel VerticalAlignment="Top" Margin="15,15,15,15">
                         <TextBlock Text="{Binding DisplayOneHourAverage}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
-                                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                                   Style="{StaticResource BaseTextBlockStyle}" />
                         <TextBlock Text="{Binding DisplayOneHourMax}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
-                                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                                   Style="{StaticResource BaseTextBlockStyle}" />
                         <TextBlock Text="{Binding DisplayEightHoursAverage}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
-                                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                                   Style="{StaticResource BaseTextBlockStyle}" />
                         <TextBlock Text="{Binding DisplayOneHourAverageTime}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
-                                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                                   Style="{StaticResource BaseTextBlockStyle}" />
                         <TextBlock Text="{Binding DisplayInfoFreshness}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
-                                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                                   Style="{StaticResource BaseTextBlockStyle}" />
                     </StackPanel>
                 </Border>
                 <StackPanel VerticalAlignment="Bottom" Background="{Binding OneHourAverage, Converter={StaticResource ColorInterpolator}}">
@@ -35,20 +34,28 @@
                 </StackPanel>
             </Grid>
         </DataTemplate>
-
     </Page.Resources>
-	<Page.BottomAppBar>
-		<CommandBar>
-			<CommandBar.SecondaryCommands>
-				<AppBarButton
+    
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton
                     micro:Message.Attach="[Event Click] = [Action AboutApp()]"
                     Label="über"/>
-			</CommandBar.SecondaryCommands>
-			<AppBarButton Icon="Accept" Label="appbarbutton"/>
-			<AppBarButton Icon="Cancel" Label="appbarbutton"/>
-		</CommandBar>
-	</Page.BottomAppBar>
-    
+            </CommandBar.SecondaryCommands>
+            <AppBarButton Icon="Filter" Label="bundesland"/>
+            <AppBarButton Icon="Shuffle" Label="sortierung"/>
+            <AppBarButton Icon="Font" Label="A-Z">
+                <AppBarButton.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="aufsteigend" Tag="aufsteigend"/>
+                        <MenuFlyoutItem Text="absteigend" Tag="absteigend"/>
+                    </MenuFlyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
+
     <Grid x:Name="LayoutRoot">
 
         <Grid.ChildrenTransitions>
