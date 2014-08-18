@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using AirQualityInfo.DataClient;
 using AirQualityInfo.DataClient.Mocks;
+using AirQualityInfo.DataClient.Services;
 using AirQualityInfo.WP.Common;
 using AirQualityInfo.WP.Services;
 using AirQualityInfo.WP.ViewModels;

@@ -33,14 +33,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BindableBase.cs" />
+    <Compile Include="DataAggregate.cs" />
     <Compile Include="DefaultHttpClient.cs" />
     <Compile Include="IHttpClient.cs" />
     <Compile Include="Mocks\MockHttpClient.cs" />
+    <Compile Include="Models\FilterByState.cs" />
     <Compile Include="Models\GeoCoordinate.cs" />
     <Compile Include="Models\GeoCoordinate.DistanceTo.cs" />
+    <Compile Include="Models\LocationResult.cs" />
     <Compile Include="Models\OzoneInformation.cs" />
+    <Compile Include="Models\SortByOption.cs" />
     <Compile Include="OzoneRootObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ILocationService.cs" />
+    <Compile Include="Services\IOzoneDataService.cs" />
     <Compile Include="UmweltbundesamtOzoneDataClient.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +68,7 @@
   <ItemGroup>
     <None Include="ReadMe.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

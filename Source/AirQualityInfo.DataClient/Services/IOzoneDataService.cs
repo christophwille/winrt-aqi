@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using AirQualityInfo.DataClient.Models;
 
-namespace AirQualityInfo.WP.Services
+namespace AirQualityInfo.DataClient.Services
 {
     public interface IOzoneDataService
     {
+        Task<List<OzoneInformation>> LoadAsync();
         Task<List<OzoneInformation>> LoadAsync(bool forceReload);
         Task<OzoneInformation> GetStationAsync(string stationId);
     }

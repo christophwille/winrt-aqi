@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AirQualityInfo.WP.Models;
+using AirQualityInfo.DataClient.Models;
 
-namespace AirQualityInfo.WP.Services
+namespace AirQualityInfo.DataClient.Services
 {
     public interface ILocationService
     {

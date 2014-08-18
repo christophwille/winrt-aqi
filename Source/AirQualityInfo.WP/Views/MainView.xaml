@@ -72,7 +72,7 @@
             <StackPanel>
                 <TextBlock Text="{Binding FilterDisplay}" />
                 <ListView 
-                    ItemsSource="{Binding Stations}"
+                    ItemsSource="{Binding Aggregate.OzoneDisplayData}"
                     SelectionMode="None" 
                     IsSwipeEnabled="False"
                     IsItemClickEnabled="True"

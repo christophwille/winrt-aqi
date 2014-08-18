@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.Devices.Geolocation;
 
-namespace AirQualityInfo.WP.Models
+namespace AirQualityInfo.DataClient.Models
 {
     public class LocationResult
     {
-        public LocationResult(Geoposition pos)
+        public LocationResult(GeoCoordinate pos)
         {
-            Position = pos;
+            Coordinate = pos;
         }
 
         public LocationResult(string errMsg)
@@ -19,11 +18,11 @@ namespace AirQualityInfo.WP.Models
             ErrorMessage = errMsg;
         }
 
-        public Geoposition Position { get; set; }
+        public GeoCoordinate Coordinate { get; set; }
 
         public bool Succeeded
         {
-            get { return null != Position; }
+            get { return null != Coordinate; }
         }
 
         public string ErrorMessage { get; set; }

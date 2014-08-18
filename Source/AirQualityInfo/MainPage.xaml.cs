@@ -48,8 +48,8 @@ namespace AirQualityInfo
         /// session.  This will be null the first time a page is visited.</param>
         protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            ViewModel.LoadOzoneDataAsync();
-            ViewModel.LookupPositionAsync();
+            ViewModel.Aggregate.LoadOzoneDataAsync();
+            ViewModel.Aggregate.LookupPositionAsync();
         }
 
         /// <summary>
@@ -117,16 +117,16 @@ namespace AirQualityInfo
         {
             var state = ((MenuItem)sender).Tag as FilterByState;
 
-            ViewModel.CurrentFilter = state;
-            ViewModel.DisplayMeasurements();
+            ViewModel.Aggregate.CurrentFilter = state;
+            ViewModel.Aggregate.DisplayMeasurements();
         }
 
         private void sortByClicked(object sender, RoutedEventArgs e)
         {
             var sortby = ((MenuItem)sender).Tag as SortByOption;
 
-            ViewModel.CurrentSort = sortby;
-            ViewModel.DisplayMeasurements();
+            ViewModel.Aggregate.CurrentSort = sortby;
+            ViewModel.Aggregate.DisplayMeasurements();
         }
 
         private void MeasurementsGridView_OnItemClick(object sender, ItemClickEventArgs e)

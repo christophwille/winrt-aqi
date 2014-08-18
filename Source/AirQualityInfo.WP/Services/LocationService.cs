@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Windows.Devices.Geolocation;
-using AirQualityInfo.WP.Models;
+using AirQualityInfo.DataClient.Models;
+using AirQualityInfo.DataClient.Services;
 
 namespace AirQualityInfo.WP.Services
 {
@@ -26,7 +27,7 @@ namespace AirQualityInfo.WP.Services
                     timeout: TimeSpan.FromSeconds(10)
                     );
 
-                return new LocationResult(pos);
+                return new LocationResult(new GeoCoordinate(pos.Coordinate.Latitude, pos.Coordinate.Longitude));
             }
             catch (UnauthorizedAccessException)
             {

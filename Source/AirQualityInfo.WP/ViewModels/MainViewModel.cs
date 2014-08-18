@@ -5,42 +5,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
+using AirQualityInfo.DataClient;
 using AirQualityInfo.DataClient.Models;
-using AirQualityInfo.Models;
+using AirQualityInfo.DataClient.Services;
 using AirQualityInfo.WP.Services;
 using Caliburn.Micro;
 
 namespace AirQualityInfo.WP.ViewModels
 {
-    public class MainViewModel : Screen
+    public class MainViewModel : Screen, IMainViewModel
     {
         private readonly INavigationService _navigationService;
-        private readonly IOzoneDataService _dataService;
 
-        public bool UpdateInProgress { get; set; }
-        public GeoCoordinate CurrentLocation { get; set; }
-        public ObservableCollection<OzoneInformation> Stations { get; set; }
         public string FilterDisplay { get; set; }
+        public DataAggregate Aggregate { get; set; }
 
-
-        private List<OzoneInformation> _loadedStations = null;
-        private FilterByState _currentFilter = FilterByState.GetDefaultFilter();
-        private SortByOption _currentSort = SortByOption.GetDefaultSort();
-
-        public MainViewModel(INavigationService navigationService, IOzoneDataService dataService)
+        public MainViewModel(INavigationService navigationService, 
+            ILocationService locationService, 
+            IOzoneDataService dataService)
         {
             _navigationService = navigationService;
-            _dataService = dataService;
+            Aggregate = new DataAggregate(locationService, dataService);
         }
 
         protected async override void OnActivate()
         {
             base.OnActivate();
-
-            _loadedStations = await _dataService.LoadAsync(false);
-
-            // TODO: Fix for filtering && do a null check && do cache the stuff
-            Stations = new ObservableCollection<OzoneInformation>(_loadedStations);
+            Aggregate.RefreshData();
         }
 
         public void StationSelected(ItemClickEventArgs eventArgs)

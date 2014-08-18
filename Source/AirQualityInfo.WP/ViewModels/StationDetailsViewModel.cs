@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AirQualityInfo.DataClient.Models;
-using AirQualityInfo.WP.Services;
+using AirQualityInfo.DataClient.Services;
 using Caliburn.Micro;
 
 namespace AirQualityInfo.WP.ViewModels

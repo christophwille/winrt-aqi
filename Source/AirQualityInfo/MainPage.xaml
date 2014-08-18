@@ -16,7 +16,7 @@
 
         <CollectionViewSource
             x:Name="measurementsViewSource"
-            Source="{Binding OzoneDisplayData}"
+            Source="{Binding Aggregate.OzoneDisplayData}"
             d:Source="{Binding OzoneData, Source={d:DesignInstance Type=data:SampleDataSource, IsDesignTimeCreatable=True}}"/>
 
         <LinearGradientBrush x:Key="OzoneLegendBrush" StartPoint="0.05,0" EndPoint="0.95,0">
@@ -69,7 +69,7 @@
         </Grid.RowDefinitions>
 
         <ProgressBar
-                     Visibility="{Binding UpdateInProgress, Converter={StaticResource q42visconverter}}"
+                     Visibility="{Binding Aggregate.UpdateInProgress, Converter={StaticResource q42visconverter}}"
                      HorizontalAlignment="Center" 
                      VerticalAlignment="Top" 
                      IsIndeterminate="True"  
@@ -108,14 +108,14 @@
                            Tapped="FilterBy_OnTapped"
                            x:Name="filterByControl"
                            Style="{StaticResource PageSubheaderTextStyle}">
-                    <Run Text="{Binding CurrentFilter.StateDisplayString}" />
+                    <Run Text="{Binding Aggregate.CurrentFilter.StateDisplayString}" />
                     <Run FontFamily="Symbol" Text=" &#xDA;" />
                 </TextBlock>
                 <TextBlock Margin="0,15,15,15"
                            Tapped="SortBy_OnTapped"
                            x:Name="sortByControl"
                            Style="{StaticResource PageSubheaderTextStyle}">
-                    <Run Text="{Binding CurrentSort.SortDisplayString}" />
+                    <Run Text="{Binding Aggregate.CurrentSort.SortDisplayString}" />
                     <Run FontFamily="Symbol" Text=" &#xDA;" />
                 </TextBlock>
             </StackPanel>
@@ -219,7 +219,7 @@
             <GridView
                 VerticalAlignment="Top"
                 x:Name="measurementsGridView"
-                Visibility="{Binding OzoneDisplayData, Converter={StaticResource q42visconverter}}"
+                Visibility="{Binding Aggregate.OzoneDisplayData, Converter={StaticResource q42visconverter}}"
                 AutomationProperties.AutomationId="ItemsGridView"
                 AutomationProperties.Name="Items"
                 TabIndex="1"
@@ -238,7 +238,7 @@
                         Grid.Column="3"
                         Grid.Row="1"
                         x:Name="InfoMessagesPane"
-                        Visibility="{Binding OzoneDisplayData, Converter={StaticResource q42inversevisconverter}}">
+                        Visibility="{Binding Aggregate.OzoneDisplayData, Converter={StaticResource q42inversevisconverter}}">
 
                 <TextBlock Style="{StaticResource TitleTextStyle}" 
                            VerticalAlignment="Center">Keine Daten geladen</TextBlock>

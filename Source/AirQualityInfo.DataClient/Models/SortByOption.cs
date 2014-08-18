@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AirQualityInfo.Models
+namespace AirQualityInfo.DataClient.Models
 {
     public enum SortByOptionEnum
     {

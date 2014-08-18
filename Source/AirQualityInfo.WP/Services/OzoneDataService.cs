@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AirQualityInfo.DataClient;
 using AirQualityInfo.DataClient.Models;
+using AirQualityInfo.DataClient.Services;
 
 namespace AirQualityInfo.WP.Services
 {
@@ -60,6 +61,11 @@ namespace AirQualityInfo.WP.Services
             }
 
             return null;
+        }
+
+        public async Task<List<OzoneInformation>> LoadAsync()
+        {
+            return await LoadAsync(true);
         }
     }
 }
