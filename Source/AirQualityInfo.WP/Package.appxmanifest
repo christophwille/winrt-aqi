@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="4d8a1d34-7dc6-4b86-b253-16caa616f13f" Publisher="CN=christophw" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="4d8a1d34-7dc6-4b86-b253-16caa616f13f" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="ChristophWille.OzoneAustria.WP" Publisher="CN=christophw" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="ea57da8c-eed3-47c6-9073-58cd4c902960" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>AirQualityInfo.WP</DisplayName>
-    <PublisherDisplayName>christophw</PublisherDisplayName>
+    <DisplayName>Ozonwerte Österreich</DisplayName>
+    <PublisherDisplayName>Christoph Wille</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
@@ -16,7 +16,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="AirQualityInfo.WP.App">
-      <m3:VisualElements DisplayName="AirQualityInfo.WP" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="AirQualityInfo.WP" ForegroundText="light" BackgroundColor="transparent">
+      <m3:VisualElements DisplayName="Ozonwerte Österreich" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="Zeigt für Österreich die letztaktuellen Ozonwerte der ihrer Position am nächsten gelegenen Meßstation an. Datenquelle: Umweltbundesamt GmbH - data.umweltbundesamt.at" ForegroundText="light" BackgroundColor="transparent">
         <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Square71x71Logo.png">
         </m3:DefaultTile>
         <m3:SplashScreen Image="Assets\SplashScreen.png" />
