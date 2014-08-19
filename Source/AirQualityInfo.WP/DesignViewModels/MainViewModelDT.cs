@@ -12,15 +12,12 @@ namespace AirQualityInfo.WP.DesignViewModels
 {
     public class MainViewModelDT : IMainViewModel
     {
-        public string FilterDisplay { get; set; }
         public DataAggregate Aggregate { get; set; }
 
 
         public MainViewModelDT()
         {
             Aggregate = new DataAggregate(null, null);
-
-            FilterDisplay = "Filter for: nothing";
 
             Aggregate.OzoneDisplayData = new List<OzoneInformation>()
             {
@@ -33,7 +30,17 @@ namespace AirQualityInfo.WP.DesignViewModels
                     EightHoursAverage = 18,
                     Height = 540,
                     State = "ST"
-                }
+                },
+                new OzoneInformation()
+                {
+                    Id = "2",
+                    Name = "Bad Ischl",
+                    OneHourAverage = 221,
+                    OneHourAverageTimestampLocal = new DateTime(2012, 10, 22, 14, 00, 00),
+                    EightHoursAverage = 240,
+                    Height = 568,
+                    State = "OÖ"
+                },
             };
         }
     }

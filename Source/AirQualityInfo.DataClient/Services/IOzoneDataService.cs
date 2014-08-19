@@ -9,7 +9,6 @@ namespace AirQualityInfo.DataClient.Services
 {
     public interface IOzoneDataService
     {
-        Task<List<OzoneInformation>> LoadAsync();
         Task<List<OzoneInformation>> LoadAsync(bool forceReload);
         Task<OzoneInformation> GetStationAsync(string stationId);
     }

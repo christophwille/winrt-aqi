@@ -6,17 +6,43 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:micro="using:Caliburn.Micro"
-    xmlns:common="using:AirQualityInfo.Common"
     xmlns:designViewModels="using:AirQualityInfo.WP.DesignViewModels"
     mc:Ignorable="d"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:common="using:AirQualityInfo.WP.Common"
     d:DataContext="{Binding Source={d:DesignInstance Type=designViewModels:MainViewModelDT, IsDesignTimeCreatable=True}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <i:Interaction.Behaviors>
+        <common:ProgressBehavior IsVisible="{Binding Aggregate.UpdateInProgress}"
+                                Text="Aktualisierung läuft..."/>
+    </i:Interaction.Behaviors>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton
+                    micro:Message.Attach="[Event Click] = [Action AboutApp()]"
+                    Label="über"/>
+            </CommandBar.SecondaryCommands>
+            <AppBarButton Icon="Sync" 
+                          micro:Message.Attach="[Event Click] = [Action RefreshData()]"
+                          Label="aktualisieren"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <Page.Resources>
         <DataTemplate x:Key="ResultItemDataTemplate">
             <Grid HorizontalAlignment="Left" Width="350" Height="200">
+                <StackPanel>
+                <Border 
+                    VerticalAlignment="Top" Height="20" 
+                    Background="{Binding OneHourAverage, Converter={StaticResource ColorInterpolator}}" />
+                    
+                <TextBlock Text="{Binding Name}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextBlockStyle}" Margin="15,2,15,10"/>
+                    
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                    <StackPanel VerticalAlignment="Top" Margin="15,15,15,15">
+                    <StackPanel VerticalAlignment="Top" Margin="15,0,15,15">
                         <TextBlock Text="{Binding DisplayOneHourAverage}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
                                    Style="{StaticResource BaseTextBlockStyle}" />
                         <TextBlock Text="{Binding DisplayOneHourMax}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
@@ -29,65 +55,64 @@
                                    Style="{StaticResource BaseTextBlockStyle}" />
                     </StackPanel>
                 </Border>
-                <StackPanel VerticalAlignment="Bottom" Background="{Binding OneHourAverage, Converter={StaticResource ColorInterpolator}}">
-                    <TextBlock Text="{Binding Name}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextBlockStyle}" Height="60" Margin="15,0,15,0"/>
                 </StackPanel>
             </Grid>
         </DataTemplate>
     </Page.Resources>
-    
-    <Page.BottomAppBar>
-        <CommandBar>
-            <CommandBar.SecondaryCommands>
-                <AppBarButton
-                    micro:Message.Attach="[Event Click] = [Action AboutApp()]"
-                    Label="über"/>
-            </CommandBar.SecondaryCommands>
-            <AppBarButton Icon="Filter" Label="bundesland"/>
-            <AppBarButton Icon="Shuffle" Label="sortierung"/>
-            <AppBarButton Icon="Font" Label="A-Z">
-                <AppBarButton.Flyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem Text="aufsteigend" Tag="aufsteigend"/>
-                        <MenuFlyoutItem Text="absteigend" Tag="absteigend"/>
-                    </MenuFlyout>
-                </AppBarButton.Flyout>
-            </AppBarButton>
-        </CommandBar>
-    </Page.BottomAppBar>
 
-    <Grid x:Name="LayoutRoot">
+    <Grid x:Name="RootGrid">
+        <Hub Header="ozonwerte österreich">
+            <HubSection Header="MESSWERTE">
+                <DataTemplate>
+                    <ListView 
+                        ItemsSource="{Binding Aggregate.OzoneDisplayData}"
+                        SelectionMode="None" 
+                        IsSwipeEnabled="False"
+                        IsItemClickEnabled="True"
+                        micro:Message.Attach="[Event ItemClick] = [StationSelected($eventArgs)]"
+                        ContinuumNavigationTransitionInfo.ExitElementContainer="True"
+                        ItemTemplate="{StaticResource ResultItemDataTemplate}">
+                    </ListView>
 
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition/>
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
+                </DataTemplate>
+            </HubSection>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+            <HubSection Header="FILTER">
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
 
-        <!-- Title Panel -->
-        <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="OZONE INFO AUSTRIA" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="messstationen" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
-        </StackPanel>
-
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-            <StackPanel>
-                <TextBlock Text="{Binding FilterDisplay}" />
-                <ListView 
-                    ItemsSource="{Binding Aggregate.OzoneDisplayData}"
-                    SelectionMode="None" 
-                    IsSwipeEnabled="False"
-                    IsItemClickEnabled="True"
-                    micro:Message.Attach="[Event ItemClick] = [StationSelected($eventArgs)]"
-                    ContinuumNavigationTransitionInfo.ExitElementContainer="True"
-                    ItemTemplate="{StaticResource ResultItemDataTemplate}">
-                </ListView>
-            </StackPanel>
-        </Grid>
+                        <ComboBox ItemsSource="{Binding Aggregate.States}" 
+                                  SelectedItem="{Binding Aggregate.CurrentFilter, Mode=TwoWay}"
+                                  Header="Bundeslandfilter">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding StateDisplayString}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        
+                        <ComboBox ItemsSource="{Binding Aggregate.SortOptions}" 
+                                  SelectedItem="{Binding Aggregate.CurrentSort, Mode=TwoWay}"
+                                  Header="Sortierkriterium">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding SortDisplayString}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        
+                        <TextBlock TextWrapping="WrapWholeWords" 
+                                   Style="{StaticResource BaseTextBlockStyle}">
+                            Filter werden sofort angewendet. Die Sortierung nach Distanz funktioniert
+                            nur, wenn Sie der App erlaubt haben auf die Position zuzugreifen.</TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </HubSection>
+        </Hub>
     </Grid>
+
 </Page>

@@ -17,7 +17,6 @@ namespace AirQualityInfo.WP.ViewModels
     {
         private readonly INavigationService _navigationService;
 
-        public string FilterDisplay { get; set; }
         public DataAggregate Aggregate { get; set; }
 
         public MainViewModel(INavigationService navigationService, 
@@ -25,7 +24,11 @@ namespace AirQualityInfo.WP.ViewModels
             IOzoneDataService dataService)
         {
             _navigationService = navigationService;
-            Aggregate = new DataAggregate(locationService, dataService);
+
+            Aggregate = new DataAggregate(locationService, dataService)
+            {
+                AutoInferAirqualityOnFilterPropertyChanges = true
+            };
         }
 
         protected async override void OnActivate()
@@ -47,6 +50,11 @@ namespace AirQualityInfo.WP.ViewModels
         {
             _navigationService.UriFor<AboutViewModel>()
                 .Navigate();
+        }
+
+        public void RefreshData()
+        {
+            Aggregate.RefreshData(forceOzoneDataRefresh: true);
         }
     }
 }

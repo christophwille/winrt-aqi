@@ -81,8 +81,13 @@ namespace AirQualityInfo.ViewModels
             get
             {
                 return _refreshDataCommand
-                    ?? (_refreshDataCommand = new RelayCommand(Aggregate.RefreshData));
+                    ?? (_refreshDataCommand = new RelayCommand(RefreshData));
             }
+        }
+
+        private void RefreshData()
+        {
+            Aggregate.RefreshData(false);
         }
     }
 }

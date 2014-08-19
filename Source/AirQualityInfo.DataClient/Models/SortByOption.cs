@@ -24,9 +24,13 @@ namespace AirQualityInfo.DataClient.Models
         public SortByOptionEnum SortBy { get; set; }
         public string SortDisplayString { get; set; }
 
+        private static SortByOption _defaultSortByOption = null;
         public static SortByOption GetDefaultSort()
         {
-            return new SortByOption(SortByOptionEnum.Alpha, "Alphabetisch");
+            if (null == _defaultSortByOption)
+                _defaultSortByOption = new SortByOption(SortByOptionEnum.Alpha, "Alphabetisch");
+
+            return _defaultSortByOption;
         }
 
         public static List<SortByOption> GetSortings()

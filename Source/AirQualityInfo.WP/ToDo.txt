@@ -1,21 +1,11 @@
 ﻿
+* MainView: have color bar vertical instead of horizontal
 
-* MainView
+* MESSWERTE (x Stationen)
+	INPC abfangen vom Aggregate
 
-messstellen (header)
-Alle, alphabetisch aA (Vorarlberg, distanz Aa) (TextBlock)
-ListView (ItemTemplate diff von W8 App, Farbe als vertikales Rechteck links neben den Texten, bessere Lesbarkeit)
+* LocalSettings: store filters to local settings / load next time
 
-(Default Distanz aufsteigend von aktueller Position)
-AppBar mit zwei Buttons Filter und Sort die MenuFlyouts haben, sowie About als Secondary Command
-
-* MessstelleView
-
-Details und Legende
-
-* AboutView
-
-infos
 
 ** Ideas for future versions
 

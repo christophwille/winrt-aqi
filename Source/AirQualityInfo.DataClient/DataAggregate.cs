@@ -21,6 +21,8 @@ namespace AirQualityInfo.DataClient
             _ozoneDataService = ozoneDataService;
         }
 
+        public bool AutoInferAirqualityOnFilterPropertyChanges { get; set; }
+
         private GeoCoordinate _currentLocation = null;
 
         public GeoCoordinate CurrentLocation
@@ -72,6 +74,7 @@ namespace AirQualityInfo.DataClient
             }
         }
 
+        public List<FilterByState> States { get { return FilterByState.GetStates(); }}
         private FilterByState _currentFilter = FilterByState.GetDefaultFilter();
 
         public FilterByState CurrentFilter
@@ -82,10 +85,14 @@ namespace AirQualityInfo.DataClient
             }
             set
             {
-                SetProperty(ref _currentFilter, value);
+                if (SetProperty(ref _currentFilter, value) && AutoInferAirqualityOnFilterPropertyChanges)
+                {
+                    DisplayMeasurements();
+                }
             }
         }
 
+        public List<SortByOption> SortOptions { get { return SortByOption.GetSortings(); }}
         private SortByOption _currentSort = SortByOption.GetDefaultSort();
 
         public SortByOption CurrentSort
@@ -96,7 +103,10 @@ namespace AirQualityInfo.DataClient
             }
             set
             {
-                SetProperty(ref _currentSort, value);
+                if (SetProperty(ref _currentSort, value) && AutoInferAirqualityOnFilterPropertyChanges)
+                {
+                    DisplayMeasurements();
+                }
             }
         }
 
@@ -224,13 +234,13 @@ namespace AirQualityInfo.DataClient
             OzoneDisplayData = query.ToList();
         }
 
-        public void RefreshData()
+        public void RefreshData(bool forceOzoneDataRefresh=false)
         {
-            LoadOzoneDataAsync();
+            LoadOzoneDataAsync(forceOzoneDataRefresh);
             LookupPositionAsync();
         }
 
-        public async void LookupPositionAsync()
+        public async Task LookupPositionAsync()
         {
             var result = await PerformOperationAsync(_locationService.GetCurrentPosition);
 
@@ -241,9 +251,10 @@ namespace AirQualityInfo.DataClient
             }
         }
 
-        public async void LoadOzoneDataAsync()
+        public async Task LoadOzoneDataAsync(bool forceOzoneDataRefresh)
         {
-            var data = await PerformOperationAsync(_ozoneDataService.LoadAsync);
+            var data = await PerformOperationAsync(async () =>
+                await _ozoneDataService.LoadAsync(forceOzoneDataRefresh));
 
             if (null != data)
             {

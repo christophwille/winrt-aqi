@@ -62,10 +62,5 @@ namespace AirQualityInfo.WP.Services
 
             return null;
         }
-
-        public async Task<List<OzoneInformation>> LoadAsync()
-        {
-            return await LoadAsync(true);
-        }
     }
 }

@@ -17,9 +17,13 @@ namespace AirQualityInfo.DataClient.Models
         public string Id { get; set; }
         public string StateDisplayString { get; set; }
 
+        private static FilterByState _defaultFilter = null;
         public static FilterByState GetDefaultFilter()
         {
-            return new FilterByState("", "Alle Bundesländer");
+            if (null == _defaultFilter) 
+                _defaultFilter = new FilterByState("", "Alle Bundesländer");
+
+            return _defaultFilter;
         }
 
         public static List<FilterByState> GetStates()

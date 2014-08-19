@@ -48,7 +48,7 @@ namespace AirQualityInfo
         /// session.  This will be null the first time a page is visited.</param>
         protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            ViewModel.Aggregate.LoadOzoneDataAsync();
+            ViewModel.Aggregate.LoadOzoneDataAsync(true);
             ViewModel.Aggregate.LookupPositionAsync();
         }
 
