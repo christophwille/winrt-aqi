@@ -1,5 +1,4 @@
 ﻿
-* MainView: have color bar vertical instead of horizontal
 
 * MESSWERTE (x Stationen)
 	INPC abfangen vom Aggregate

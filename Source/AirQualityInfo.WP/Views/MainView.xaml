@@ -34,27 +34,31 @@
     <Page.Resources>
         <DataTemplate x:Key="ResultItemDataTemplate">
             <Grid HorizontalAlignment="Left" Width="350" Height="200">
-                <StackPanel>
-                <Border 
-                    VerticalAlignment="Top" Height="20" 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0"
+                    VerticalAlignment="Top" Height="175" 
                     Background="{Binding OneHourAverage, Converter={StaticResource ColorInterpolator}}" />
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
+                    <TextBlock Text="{Binding Name}"
+                               Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                               Style="{StaticResource TitleTextBlockStyle}" 
+                               Margin="0,5,15,10"/>
                     
-                <TextBlock Text="{Binding Name}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextBlockStyle}" Margin="15,2,15,10"/>
-                    
-                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                    <StackPanel VerticalAlignment="Top" Margin="15,0,15,15">
-                        <TextBlock Text="{Binding DisplayOneHourAverage}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                    <TextBlock Text="{Binding DisplayOneHourAverage}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
                                    Style="{StaticResource BaseTextBlockStyle}" />
-                        <TextBlock Text="{Binding DisplayOneHourMax}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                    <TextBlock Text="{Binding DisplayOneHourMax}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
                                    Style="{StaticResource BaseTextBlockStyle}" />
-                        <TextBlock Text="{Binding DisplayEightHoursAverage}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                    <TextBlock Text="{Binding DisplayEightHoursAverage}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
                                    Style="{StaticResource BaseTextBlockStyle}" />
-                        <TextBlock Text="{Binding DisplayOneHourAverageTime}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                    <TextBlock Text="{Binding DisplayOneHourAverageTime}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
                                    Style="{StaticResource BaseTextBlockStyle}" />
-                        <TextBlock Text="{Binding DisplayInfoFreshness}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
+                    <TextBlock Text="{Binding DisplayInfoFreshness}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
                                    Style="{StaticResource BaseTextBlockStyle}" />
-                    </StackPanel>
-                </Border>
                 </StackPanel>
             </Grid>
         </DataTemplate>
