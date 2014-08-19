@@ -43,10 +43,13 @@ namespace AirQualityInfo.WP
             container = new WinRTContainer();
             container.RegisterWinRTServices();
 
-            //container.RegisterInstance(typeof(IFavoritesRepository), null, new DefaultFavoritesRepository());
-            //container.RegisterPerRequest(typeof(IMessageService), null, typeof(DefaultMessageService));
+            container.RegisterPerRequest(typeof(IMessageService), null, typeof(DefaultMessageService));
 
+#if DEBUG
             container.RegisterPerRequest(typeof(IHttpClient), null, typeof(MockHttpClient));
+#else
+            container.RegisterPerRequest(typeof(IHttpClient), null, typeof(DefaultHttpClient));
+#endif
             container.RegisterPerRequest(typeof(IOzoneDataService), null, typeof(OzoneDataService));
             container.RegisterPerRequest(typeof(ILocationService), null, typeof(LocationService));
 

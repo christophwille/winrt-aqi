@@ -109,6 +109,8 @@
     <Compile Include="DesignViewModels\MainViewModelDT.cs" />
     <Compile Include="DesignViewModels\StationDetailsViewModelDT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DefaultMessageService.cs" />
+    <Compile Include="Services\IMessageService.cs" />
     <Compile Include="Services\LocationService.cs" />
     <Compile Include="Services\OzoneDataService.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />

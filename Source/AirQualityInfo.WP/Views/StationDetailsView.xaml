@@ -40,10 +40,6 @@
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Grid.Row="0">
                     <StackPanel Orientation="Vertical">
                         <StackPanel VerticalAlignment="Top" Margin="0,0,0,0" Background="{Binding Station.OneHourAverage, Converter={StaticResource ColorInterpolator}}">
-                            <TextBlock Text="{Binding Station.Name}" 
-                                   Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
-                                   Margin="15,15,15,0"
-                                   Style="{StaticResource BaseTextBlockStyle}" />
                             <TextBlock Text="{Binding Station.DisplayDistanceToCurrentPosition}" 
                                    Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
                                    Margin="15,0,15,15"
@@ -69,7 +65,7 @@
                     </StackPanel>
                 </Border>
 
-                <Grid Grid.Row="1" Width="300" x:Name="legendGrid">
+                <Grid Margin="0,50,0,0" Grid.Row="1" Width="300" x:Name="legendGrid">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
