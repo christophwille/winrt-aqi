@@ -26,8 +26,10 @@ namespace AirQualityInfo.DataClient.Models
             return _defaultFilter;
         }
 
+        private static List<FilterByState> _states = null;
         public static List<FilterByState> GetStates()
         {
+            if (null != _states) return _states;
             var list = new List<FilterByState>();
 
             list.Add(GetDefaultFilter());
@@ -40,6 +42,7 @@ namespace AirQualityInfo.DataClient.Models
             list.Add(new FilterByState("K", "Kärnten"));
             list.Add(new FilterByState("T", "Tirol"));
             list.Add(new FilterByState("V", "Vorarlberg"));
+            _states = list;
 
             return list;
         }

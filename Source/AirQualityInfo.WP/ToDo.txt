@@ -3,8 +3,6 @@
 * MESSWERTE (x Stationen)
 	INPC abfangen vom Aggregate
 
-* LocalSettings: store filters to local settings / load next time
-
 
 ** Ideas for future versions
 

@@ -157,7 +157,7 @@ namespace AirQualityInfo.DataClient
             if (null == CurrentLocation)
             {
                 OnResetAnyMeasurementSelection(null);
-                ResetDisplayMeasurements();
+                DisplayMeasurementsWithoutCurrentPosition();
                 return;
             }
 
@@ -185,7 +185,7 @@ namespace AirQualityInfo.DataClient
 
             // The default measurement is the nearest measurement
             OnResetAnyMeasurementSelection(nearestMeasurement ?? null);
-            ResetDisplayMeasurements();
+            DisplayMeasurements();
         }
 
         public event EventHandler<OzoneInformation> ResetAnyMeasurementSelection;
@@ -198,10 +198,13 @@ namespace AirQualityInfo.DataClient
                 e.Invoke(this, info);
         }
 
-        public void ResetDisplayMeasurements()
+        public void DisplayMeasurementsWithoutCurrentPosition()
         {
-            CurrentFilter = FilterByState.GetDefaultFilter();
-            CurrentSort = SortByOption.GetDefaultSort();
+            // If we have no geoposition, we need to reset the sort order - if it was set to distance
+            if (CurrentSort.SortBy == SortByOptionEnum.Distance)
+            {
+                CurrentSort = SortByOption.GetDefaultSort();
+            }
 
             DisplayMeasurements();
         }

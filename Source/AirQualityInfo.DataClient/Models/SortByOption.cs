@@ -33,13 +33,17 @@ namespace AirQualityInfo.DataClient.Models
             return _defaultSortByOption;
         }
 
+        private static List<SortByOption> _sortings = null;
+
         public static List<SortByOption> GetSortings()
         {
+            if (null != _sortings) return _sortings;
             var list = new List<SortByOption>();
 
             list.Add(GetDefaultSort());
             list.Add(new SortByOption(SortByOptionEnum.Distance, "Distanz"));
             list.Add(new SortByOption(SortByOptionEnum.OneHourAverage, "Ein-Stunden Durchschnitt"));
+            _sortings = list;
 
             return list;
         }
