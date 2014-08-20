@@ -19,11 +19,11 @@ namespace AirQualityInfo.WP.Services
             {
                 var geolocator = new Geolocator()
                 {
-                    DesiredAccuracyInMeters = 50
+                    DesiredAccuracyInMeters = 500
                 };
 
                 Geoposition pos = await geolocator.GetGeopositionAsync(
-                    maximumAge: TimeSpan.FromMinutes(1),
+                    maximumAge: TimeSpan.FromMinutes(5),
                     timeout: TimeSpan.FromSeconds(10)
                     );
 
