@@ -1,7 +1,6 @@
 ﻿
 
-* MESSWERTE (x Stationen)
-	INPC abfangen vom Aggregate
+* Distanzberechnung checken
 
 
 ** Ideas for future versions

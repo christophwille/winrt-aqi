@@ -66,7 +66,7 @@
 
     <Grid x:Name="RootGrid">
         <Hub Header="ozonwerte österreich">
-            <HubSection Header="MESSWERTE">
+            <HubSection Header="{Binding MesswerteHeader}">
                 <DataTemplate>
                     <ListView 
                         ItemsSource="{Binding Aggregate.OzoneDisplayData}"

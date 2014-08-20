@@ -31,6 +31,8 @@ namespace AirQualityInfo.WP.ViewModels
                 AutoInferAirqualityOnFilterPropertyChanges = true
             };
 
+            MesswerteHeader = MesswerteHeaderMainText;
+
             // do this before listening to INPC callbacks
             LoadLocalSettings();
 
@@ -68,7 +70,23 @@ namespace AirQualityInfo.WP.ViewModels
             {
                 ApplicationData.Current.LocalSettings.Values[CurrentSortSettingsKey] = (int)Aggregate.CurrentSort.SortBy;
             }
+            else if (e.PropertyName == "OzoneDisplayData")
+            {
+                if (null != Aggregate.OzoneDisplayData && Aggregate.OzoneDisplayData.Count > 0)
+                {
+                    MesswerteHeader = String.Format("{0} ({1})", 
+                        MesswerteHeaderMainText,
+                        Aggregate.OzoneDisplayData.Count);
+                }
+                else
+                {
+                    MesswerteHeader = MesswerteHeaderMainText;
+                }
+            }
         }
+
+        private const string MesswerteHeaderMainText = "MESSWERTE";
+        public string MesswerteHeader { get; set; }
 
         protected async override void OnActivate()
         {

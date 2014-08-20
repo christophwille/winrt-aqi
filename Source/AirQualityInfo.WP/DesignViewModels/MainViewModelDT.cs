@@ -13,10 +13,12 @@ namespace AirQualityInfo.WP.DesignViewModels
     public class MainViewModelDT : IMainViewModel
     {
         public DataAggregate Aggregate { get; set; }
+        public string MesswerteHeader { get; set; }
 
 
         public MainViewModelDT()
         {
+            MesswerteHeader = "MESSWERTE (x)";
             Aggregate = new DataAggregate(null, null);
 
             Aggregate.OzoneDisplayData = new List<OzoneInformation>()

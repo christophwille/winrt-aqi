@@ -12,5 +12,6 @@ namespace AirQualityInfo.WP.ViewModels
     public interface IMainViewModel
     {
         DataAggregate Aggregate { get; set; }
+        string MesswerteHeader { get; set; }
     }
 }
