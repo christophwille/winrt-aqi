@@ -19,7 +19,8 @@ namespace AirQualityInfo.WP.Services
             _httpClient = httpClient;
         }
 
-        private List<OzoneInformation> _loadedStations = null;
+        // We keep the cache as if we were a singleton (across calls on multiple vm's)
+        private static List<OzoneInformation> _loadedStations = null;
         public async Task<List<OzoneInformation>> LoadAsync(bool forceReload)
         {
             if (_loadedStations != null && !forceReload)

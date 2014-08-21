@@ -39,10 +39,11 @@
 
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Grid.Row="0">
                     <StackPanel Orientation="Vertical">
-                        <StackPanel VerticalAlignment="Top" Margin="0,0,0,0" Background="{Binding Station.OneHourAverage, Converter={StaticResource ColorInterpolator}}">
+                        <StackPanel VerticalAlignment="Top" Margin="0,0,0,0" 
+                                    Background="{Binding Station.OneHourAverage, Converter={StaticResource ColorInterpolator}}">
                             <TextBlock Text="{Binding Station.DisplayDistanceToCurrentPosition}" 
                                    Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" 
-                                   Margin="15,0,15,15"
+                                   Margin="15,15,15,15"
                                    Style="{StaticResource BaseTextBlockStyle}" />
                         </StackPanel>
                         <StackPanel VerticalAlignment="Top" Margin="15,15,15,15">

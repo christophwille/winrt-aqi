@@ -1,8 +1,5 @@
 ﻿
 
-* Distanzberechnung checken
-
-
 ** Ideas for future versions
 
 Display on map (like W8)

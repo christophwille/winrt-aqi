@@ -22,7 +22,8 @@ namespace AirQualityInfo.WP.DesignViewModels
                 OneHourAverageTimestampLocal = new DateTime(2012, 10, 22, 14, 00, 00),
                 EightHoursAverage = 18,
                 Height = 540,
-                State = "ST"
+                State = "ST",
+                DistanceToCurrentPosition = 1.5
             };
         }
     }
