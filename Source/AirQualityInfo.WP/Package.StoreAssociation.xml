@@ -197,5 +197,11 @@
     <MainPackageIdentityName>ChristophWille.Station366</MainPackageIdentityName>
     <MainPackageIdentityName>ChristophWille.Vasily</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=2c7ee753-0f1b-4276-ab9f-a731afd1a279" />
+  <PackageInfoList LandingUrl="https://dev.windowsphone.com/AppSubmission/AssociationLanding?windowsProductId=2c7ee753-0f1b-4276-ab9f-a731afd1a279">
+    <PackageInfo>
+      <OsMinVersion>6.3.0.0</OsMinVersion>
+      <PackageArchitecture>neutral</PackageArchitecture>
+      <PackageMaxArchitectureVersion>1.1.0.1</PackageMaxArchitectureVersion>
+    </PackageInfo>
+  </PackageInfoList>
 </StoreAssociation>

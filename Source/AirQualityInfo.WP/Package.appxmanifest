@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="ChristophWille.Ozonwertesterreich" Publisher="CN=C7672E4A-2AFC-41B8-87FD-CBC3978C49C6" Version="1.1.0.1" />
+  <Identity Name="ChristophWille.Ozonwertesterreich" Publisher="CN=C7672E4A-2AFC-41B8-87FD-CBC3978C49C6" Version="1.1.0.2" />
   <mp:PhoneIdentity PhoneProductId="9f825fd4-ced0-4c10-9451-f1562fb13985" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Ozonwerte Österreich</DisplayName>
