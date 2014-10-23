@@ -29,7 +29,7 @@ namespace AirQualityInfo.WP
      public sealed partial class App
     {
         private WinRTContainer container;
-        private INavigationService navigationService;
+        private INavigationService _navigationService;
 
         public App()
         {
@@ -61,7 +61,7 @@ namespace AirQualityInfo.WP
 
         protected override void PrepareViewFirst(Frame rootFrame)
         {
-            navigationService = container.RegisterNavigationService(rootFrame);
+            _navigationService = container.RegisterNavigationService(rootFrame);
             SuspensionManager.RegisterFrame(rootFrame, "AppFrame");
         }
 
@@ -93,7 +93,7 @@ namespace AirQualityInfo.WP
 
             if (args.PreviousExecutionState == ApplicationExecutionState.Terminated)
             {
-                resumed = navigationService.ResumeState();
+                resumed = _navigationService.ResumeState();
 
                 // Restore the saved session state only when appropriate.
                 try
@@ -113,11 +113,17 @@ namespace AirQualityInfo.WP
 
         protected async override void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            navigationService.SuspendState();
-
             var deferral = e.SuspendingOperation.GetDeferral();
-            await SuspensionManager.SaveAsync();
-            deferral.Complete();
+
+            try
+            {
+                _navigationService.SuspendState();
+                await SuspensionManager.SaveAsync();
+            }
+            finally
+            {
+                deferral.Complete();
+            }
         }
     }
 }
