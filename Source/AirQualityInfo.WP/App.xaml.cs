@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -119,6 +120,10 @@ namespace AirQualityInfo.WP
             {
                 _navigationService.SuspendState();
                 await SuspensionManager.SaveAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
             }
             finally
             {
